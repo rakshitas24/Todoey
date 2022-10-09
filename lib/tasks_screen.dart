@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'tasks_list.dart';
+import 'add_task_screen.dart';
 
 class TasksScreen extends StatelessWidget {
   bool isChecked = false;
@@ -10,7 +11,9 @@ class TasksScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(context: context, builder: ((context) => AddTaskScreen()));
+        },
         backgroundColor: Colors.lightBlueAccent,
         child: Icon(Icons.add),
       ),
@@ -56,6 +59,7 @@ class TasksScreen extends StatelessWidget {
           ),
           Expanded(
             child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
