@@ -5,7 +5,6 @@ import 'tasks_list.dart';
 import 'add_task_screen.dart';
 
 class TasksScreen extends StatelessWidget {
-  bool isChecked = false;
 
   @override
   Widget build(BuildContext context) {
