@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'tasks_tile.dart';
 import 'task_data.dart';
 import 'package:provider/provider.dart';
+import 'task.dart';
 
 class TasksList extends StatelessWidget {
 
@@ -18,11 +19,11 @@ class TasksList extends StatelessWidget {
               isChecked: taskData.tasks[index].isDone, 
               taskTitle: taskData.tasks[index].name,
               checkboxCallback : (checkboxState) {
-            // setState(() {
-            //   taskData.tasks[index].toggleDone();
-            // });
-          }
-    
+                taskData.updateTask(taskData.tasks[index]);
+              },
+              longPressCallback:() {
+                taskData.deleteTask(taskData.tasks[index]);
+              },
               );
         },
         itemCount: taskData.taskCount,

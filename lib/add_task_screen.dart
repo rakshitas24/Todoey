@@ -1,12 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'task.dart';
+import 'task_data.dart';
+import 'package:provider/provider.dart';
 
 class AddTaskScreen extends StatelessWidget {
-
-final Function addTaskCallBack;
-
-AddTaskScreen(this.addTaskCallBack);
 
   @override
   Widget build(BuildContext context) {
@@ -40,15 +39,15 @@ AddTaskScreen(this.addTaskCallBack);
                   },
                 ),
                 TextButton(
-                  style: TextButton.styleFrom(backgroundColor: Colors.lightBlueAccent),
-                onPressed: (() {
-                  addTaskCallBack(newTaskTitle);
-                }), 
+                  style: TextButton.styleFrom(backgroundColor: Colors.lightBlueAccent), 
                 child: Text(
                   'Add',
                   style: TextStyle(color: Colors.white),
                   ),
-                  
+                  onPressed: (() {
+                    Provider.of<TaskData>(context).addTask(newTaskTitle);
+                    Navigator.pop(context);
+                }),
                 ),
               ],
             ),
