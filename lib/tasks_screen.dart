@@ -3,20 +3,33 @@
 import 'package:flutter/material.dart';
 import 'tasks_list.dart';
 import 'add_task_screen.dart';
+import 'task_data.dart';
+import 'package:provider/provider.dart';
 
 class TasksScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.lightBlueAccent,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showModalBottomSheet(context: context, builder: ((context) => AddTaskScreen()));
-        },
         backgroundColor: Colors.lightBlueAccent,
         child: Icon(Icons.add),
+        onPressed: () {
+          showModalBottomSheet(
+            context: context, 
+            builder: (context) => AddTaskScreen(
+            (newTaskTitle) {
+            // setState(() {
+            //   tasks.add(Task(name: newTaskTitle));
+            // });
+            Navigator.pop(context);
+            },
+          ),
+          );
+        },
       ),
-      backgroundColor: Colors.lightBlueAccent,
+
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -47,7 +60,7 @@ class TasksScreen extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '12 Tasks',
+                  '${Provider.of<TaskData>(context).taskCount} Tasks',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18.0,
